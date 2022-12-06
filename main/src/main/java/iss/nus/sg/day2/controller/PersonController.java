@@ -79,4 +79,18 @@ public class PersonController {
         return "redirect:/persons/list";
     }
 
+    @GetMapping(value = "/addPerson")
+    public String addPerson(Model model){
+        Person person = new Person();
+        model.addAttribute("person", person);
+        return "personAdd";
+    }
+
+    @PostMapping(value = "/addPerson")
+    public String savePerson(@ModelAttribute(value = "person") Person p) {
+        personService.addPerson(p);
+        return "redirect:/persons/list";
+    }
+        
+
 }
